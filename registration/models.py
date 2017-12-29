@@ -4,7 +4,7 @@ from __future__ import unicode_literals
 from django.contrib.auth.models import User
 from django.db import models
 from django.urls import reverse
-from django.core.validators import RegexValidator
+from django.core.validators import RegexValidator, MinValueValidator
 from datetime import date
 
 
@@ -23,7 +23,9 @@ class UserInfo(models.Model):
     email = models.URLField(blank=True)
     facebook = models.URLField(blank=True)
     twitter = models.URLField(blank=True)
-    year = models.IntegerField(blank=True)
+    year = models.IntegerField(blank=True, validators=[
+            MinValueValidator(2003)
+        ])
     resume = models.FileField(upload_to='resume/', blank=True, null=True)
     typing_speed = models.IntegerField(blank=True, null=True)
     system_number = models.IntegerField(blank=True, null=True)

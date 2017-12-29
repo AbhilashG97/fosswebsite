@@ -44,8 +44,8 @@ class UserSignUpForm(forms.ModelForm):
         year = int(self.cleaned_data.get("year"))
         if year > int(datetime.timezone.now().year):
             raise forms.ValidationError(_("The year cannot be greater than the current year"))
-        if year < 2000:
-            raise forms.ValidationError(_("The year cannot be less than 2000"))
+        if year < 2003:
+            raise forms.ValidationError(_("The year cannot be less than 2003"))
         return year
 
     def save(self, commit=True):
